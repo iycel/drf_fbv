@@ -37,7 +37,7 @@
 To clone and run this application, you'll need [Git](https://git-scm.com) 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/iycel/drf_fbv.git
 
 # Install dependencies
 > python -m venv env
