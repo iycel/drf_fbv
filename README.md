@@ -17,7 +17,7 @@
 
 ## Overview
 
-![screenshot](https://github.com/iycel/drf_fbv/blob/main/media_root/DRF.png)
+![screenshot](https://github.com/iycel/drf_fbv/blob/master/media_root/DRF.png)
 
 
 ### Built With
