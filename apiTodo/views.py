@@ -42,10 +42,33 @@ def toDo_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_CREATED)
 
 # Update and Delete
-@api_view(['PUT'])
-def todoListUpdate(request, pk):
+
+# @api_view(['PUT'])
+# def todoListUpdate(request, pk):
+#     queryset = Todo.objects.get(id=pk)
+#     serializer = TodoSerializer(instance=queryset, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#     return Response(serializer.data)
+
+# @api_view(['DELETE'])
+# def todoListDelete(request, pk):
+#     queryset = Todo.objects.get(id=pk)
+#     queryset.delete()
+#     return Response('Api Deleted')
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def toDo_Details(request, pk):
     queryset = Todo.objects.get(id=pk)
-    serializer = TodoSerializer(instance=queryset, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+    if request.method == 'GET':
+        serializer = TodoSerializer(queryset)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = TodoSerializer(instance=queryset, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+    elif request.method == 'DELETE':
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
