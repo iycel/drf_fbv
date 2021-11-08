@@ -16,4 +16,12 @@ def todoList(request):
     queryset = Todo.objects.all()
 
     serializer = TodoSerializer(queryset, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def todoListCreate(request):
+    serializer = TodoSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
     return Response(serializer.data)
